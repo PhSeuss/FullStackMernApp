@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
+import App from './component/App'
 
-// ReactDOM.render(
-//     <h2>Hello React with JSX!! -- {Math.random()} </h2>,
-//     document.getElementById('root')
-// );
+ReactDOM.render(
+    <App />,
+    document.getElementById('root')
+);
