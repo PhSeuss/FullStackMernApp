@@ -65,9 +65,13 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
+	var _testData = __webpack_require__(/*! ./testData */ 188);
+	
+	var _testData2 = _interopRequireDefault(_testData);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { contests: _testData2.default.contests }), document.getElementById('root'));
 
 /***/ }),
 /* 1 */
@@ -22474,6 +22478,10 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
+	var _ContestPreview = __webpack_require__(/*! ./ContestPreview */ 189);
+	
+	var _ContestPreview2 = _interopRequireDefault(_ContestPreview);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22497,7 +22505,7 @@
 	        }
 	
 	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	            headerMessage: "hello from state abc"
+	            headerMessage: "Bullshit that i'm doing"
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
 	
@@ -22509,9 +22517,9 @@
 	                { className: 'App' },
 	                _react2.default.createElement(_Header2.default, { message: this.state.headerMessage }),
 	                _react2.default.createElement(
-	                    'p',
+	                    'div',
 	                    null,
-	                    'This is body'
+	                    _react2.default.createElement(_ContestPreview2.default, { contest: this.props.contests[0] })
 	                )
 	            );
 	        }
@@ -22519,8 +22527,6 @@
 	
 	    return App;
 	}(_react2.default.Component);
-	
-	;
 	
 	exports.default = App;
 
@@ -22561,6 +22567,50 @@
 	};
 	
 	exports.default = Header;
+
+/***/ }),
+/* 188 */
+/*!***************************!*\
+  !*** ./src/testData.json ***!
+  \***************************/
+/***/ (function(module, exports) {
+
+	module.exports = {"contests":[{"id":1,"categoryName":"Business/Company","contestName":"Cognitve Building"},{"id":2,"categoryName":"Magazine/Newsletter","contestName":"Educating people about sueing"},{"id":3,"categoryName":"Software Component","contestName":"Big Data Analytics"}]}
+
+/***/ }),
+/* 189 */
+/*!*****************************************!*\
+  !*** ./src/component/ContestPreview.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ContestPreview = function ContestPreview(_ref) {
+	    var contest = _ref.contest;
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "ContestPreview" },
+	        contest.categoryName,
+	        ":",
+	        contest.contestName
+	    );
+	};
+	// contestPreview.propTypes = {
+	//     message: PropTypes.string
+	// };
+	
+	exports.default = ContestPreview;
 
 /***/ })
 /******/ ]);

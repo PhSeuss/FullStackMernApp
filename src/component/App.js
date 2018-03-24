@@ -1,22 +1,22 @@
 import React from 'react'
 import Header from './Header'
-
+import ContestPreview from './ContestPreview'
 
 class App extends React.Component{
     state = {
-        headerMessage: "hello from state abc"
-    };
+        headerMessage: "Bullshit that i'm doing"
+    }
     render(){
         return (
             <div className="App">
                 <Header message={this.state.headerMessage} />
-                <p>
-                    This is body
-                </p>
+                <div>
+                    <ContestPreview contest = {this.props.contests[0]} />
+                </div>
             </div>
         )
     }
 
-};
+}
 
-export default App;
+export default App

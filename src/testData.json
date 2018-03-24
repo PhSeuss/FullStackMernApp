@@ -1,0 +1,19 @@
+{
+    "contests": [
+        {
+            "id": 1,
+            "categoryName": "Business/Company",
+            "contestName": "Cognitve Building"
+        },
+        {
+            "id": 2,
+            "categoryName": "Magazine/Newsletter",
+            "contestName": "Educating people about sueing"
+        },
+        {
+            "id": 3,
+            "categoryName": "Software Component",
+            "contestName": "Big Data Analytics"           
+        }
+    ]
+}
