@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Header = ({message}) => {
+const Header = (message) => {
     return (
         <h2 className="Header">
-            {message}
+            {message.headerMessage}
         </h2>
     )
 };
-Header.propTypes = {
-    message: PropTypes.string
-};
+// Header.propTypes = {
+//     message: PropTypes.string
+// };
 
 export default Header;

@@ -1,17 +1,22 @@
 import React from 'react'
 import Header from './Header'
-import ContestPreview from './ContestPreview'
+import ContestList from './ContestList'
+
 
 class App extends React.Component{
     state = {
-        headerMessage: "Bullshit that i'm doing"
+        hM: {headerMessage: "Bullshit that i'm doing"},
+        contests: this.props.initialContests
+    }
+    componentDidMount() {
+
     }
     render(){
         return (
             <div className="App">
-                <Header message={this.state.headerMessage} />
+                <Header {...this.state.hM} />
                 <div>
-                    <ContestPreview contest = {this.props.contests[0]} />
+                    <ContestList contests={this.state.contests} />
                 </div>
             </div>
         )

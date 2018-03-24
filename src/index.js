@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import App from './component/App'
-import data from './testData'
 
 
 ReactDOM.render(
-    <App contests={data.contests}/>,
+    <App initialContests={window.initialData.contests}/>,
     document.getElementById('root')
 )
+    // this.setState({
+    //     contests: resp.data.contests
+    // })
+

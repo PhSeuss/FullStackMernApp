@@ -65,13 +65,12 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _testData = __webpack_require__(/*! ./testData */ 188);
-	
-	var _testData2 = _interopRequireDefault(_testData);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { contests: _testData2.default.contests }), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { initialContests: window.initialData.contests }), document.getElementById('root'));
+	// this.setState({
+	//     contests: resp.data.contests
+	// })
 
 /***/ }),
 /* 1 */
@@ -22478,9 +22477,9 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _ContestPreview = __webpack_require__(/*! ./ContestPreview */ 189);
+	var _ContestList = __webpack_require__(/*! ./ContestList */ 188);
 	
-	var _ContestPreview2 = _interopRequireDefault(_ContestPreview);
+	var _ContestList2 = _interopRequireDefault(_ContestList);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22505,21 +22504,25 @@
 	        }
 	
 	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	            headerMessage: "Bullshit that i'm doing"
+	            hM: { headerMessage: "Bullshit that i'm doing" },
+	            contests: _this.props.initialContests
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
 	
 	    _createClass(App, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'App' },
-	                _react2.default.createElement(_Header2.default, { message: this.state.headerMessage }),
+	                _react2.default.createElement(_Header2.default, this.state.hM),
 	                _react2.default.createElement(
 	                    'div',
 	                    null,
-	                    _react2.default.createElement(_ContestPreview2.default, { contest: this.props.contests[0] })
+	                    _react2.default.createElement(_ContestList2.default, { contests: this.state.contests })
 	                )
 	            );
 	        }
@@ -22553,29 +22556,59 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Header = function Header(_ref) {
-	    var message = _ref.message;
-	
+	var Header = function Header(message) {
 	    return _react2.default.createElement(
 	        'h2',
 	        { className: 'Header' },
-	        message
+	        message.headerMessage
 	    );
 	};
-	Header.propTypes = {
-	    message: _propTypes2.default.string
-	};
+	// Header.propTypes = {
+	//     message: PropTypes.string
+	// };
 	
 	exports.default = Header;
 
 /***/ }),
 /* 188 */
-/*!***************************!*\
-  !*** ./src/testData.json ***!
-  \***************************/
-/***/ (function(module, exports) {
+/*!**************************************!*\
+  !*** ./src/component/ContestList.js ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = {"contests":[{"id":1,"categoryName":"Business/Company","contestName":"Cognitve Building"},{"id":2,"categoryName":"Magazine/Newsletter","contestName":"Educating people about sueing"},{"id":3,"categoryName":"Software Component","contestName":"Big Data Analytics"}]}
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ContestPreview = __webpack_require__(/*! ./ContestPreview */ 189);
+	
+	var _ContestPreview2 = _interopRequireDefault(_ContestPreview);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ContestList = function ContestList(_ref) {
+	    var contests = _ref.contests;
+	
+	    return _react2.default.createElement(
+	        'div',
+	        { className: 'ContestList' },
+	        _react2.default.createElement(
+	            'div',
+	            null,
+	            contests.map(function (contest) {
+	                return _react2.default.createElement(_ContestPreview2.default, { key: contest.id, contest: contest });
+	            })
+	        )
+	    );
+	};
+	
+	exports.default = ContestList;
 
 /***/ }),
 /* 189 */
@@ -22590,25 +22623,63 @@
 	    value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var ContestPreview = function ContestPreview(_ref) {
-	    var contest = _ref.contest;
-	    return _react2.default.createElement(
-	        "div",
-	        { className: "ContestPreview" },
-	        contest.categoryName,
-	        ":",
-	        contest.contestName
-	    );
-	};
-	// contestPreview.propTypes = {
-	//     message: PropTypes.string
-	// };
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ContestPreview = function (_Component) {
+	    _inherits(ContestPreview, _Component);
+	
+	    function ContestPreview() {
+	        var _ref;
+	
+	        var _temp, _this, _ret;
+	
+	        _classCallCheck(this, ContestPreview);
+	
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+	
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ContestPreview.__proto__ || Object.getPrototypeOf(ContestPreview)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	            contest: _this.props.contest
+	        }, _this.handleClick = function () {
+	            console.log(_this.state.contest);
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
+	    }
+	
+	    _createClass(ContestPreview, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "link ContestPreview", onClick: this.handleClick },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "categoryName" },
+	                    this.state.contest.categoryName
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "contestName" },
+	                    this.state.contest.contestName
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return ContestPreview;
+	}(_react.Component);
 	
 	exports.default = ContestPreview;
 
